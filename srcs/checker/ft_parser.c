@@ -6,7 +6,7 @@
 /*   By: chduong <chduong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 12:14:20 by chduong           #+#    #+#             */
-/*   Updated: 2021/12/02 18:00:20 by chduong          ###   ########.fr       */
+/*   Updated: 2021/12/03 17:18:11 by chduong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,14 @@ static int	invalid_nb(t_list *lst, long int nb)
 	if (nb > INT_MAX || nb < INT_MIN)
 		return (1);
 	first = lst;
-	while (lst && lst->next != first)
+	while (lst)
 	{
 		if (nb == lst->val)
 			return (1);
-		lst = lst->next;
+		if (lst->next != first)
+			lst = lst->next;
+		else
+			break ;
 	}
 	return (0);
 }

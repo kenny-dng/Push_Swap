@@ -6,12 +6,11 @@
 /*   By: chduong <chduong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 12:14:20 by chduong           #+#    #+#             */
-/*   Updated: 2021/12/03 16:50:48 by chduong          ###   ########.fr       */
+/*   Updated: 2021/12/03 17:18:32 by chduong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 static int	invalid_str(const char *str)
 {
