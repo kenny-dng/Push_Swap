@@ -6,13 +6,21 @@
 /*   By: chduong <chduong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 14:40:53 by chduong           #+#    #+#             */
-/*   Updated: 2021/11/18 15:17:48 by chduong          ###   ########.fr       */
+/*   Updated: 2021/12/02 12:56:56 by chduong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort(t_list **a, t_list **b, int len)
+void	big_sort(t_list **a, t_list **b, t_uint max)
+{
+	make_third(a, b, max);
+	divide_third(a, b);
+	insertion_sort(a, b);
+	go_top(a, max);
+}
+
+void	sort(t_list **a, t_list **b, t_uint len)
 {
 	if (len > 2)
 		index_stack(*a, len);
@@ -23,7 +31,7 @@ void	sort(t_list **a, t_list **b, int len)
 	else if (len > 3 && len <= 6)
 		sort_6(a, b, len);
 	else if (len > 6)
-		big_sort(a);
+		big_sort(a, b, len);
 	else
 		return ;
 }
@@ -39,10 +47,8 @@ int	main(int ac, char **av)
 	{
 		parse_arg(&stack_a, ac, av);
 		sort(&stack_a, &stack_b, ac - 1);
-		print_stack(stack_a, stack_b);
 		ft_lstclear(&stack_a);
 		ft_lstclear(&stack_b);
-		// system("leaks out");
 	}
 	return (0);
 }

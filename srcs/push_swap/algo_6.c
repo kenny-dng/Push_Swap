@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   algo_6.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kennyduong <kennyduong@student.42.fr>      +#+  +:+       +#+        */
+/*   By: chduong <chduong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 18:56:00 by chduong           #+#    #+#             */
-/*   Updated: 2021/11/16 14:12:36 by kennyduong       ###   ########.fr       */
+/*   Updated: 2021/11/24 19:16:57 by chduong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	divide_stack(t_list **a, t_list **b, unsigned int mid)
+static void	divide_stack(t_list **a, t_list **b, t_uint mid)
 {
 	while (ft_lstsize(*a) > 3)
 	{
@@ -33,7 +33,7 @@ static void	divide_stack(t_list **a, t_list **b, unsigned int mid)
 		rev_sort_2(b);
 }
 
-unsigned int	find_mid(unsigned int max)
+static t_uint	find_mid(t_uint max)
 {
 	if (max < 4)
 		return (0);
@@ -45,7 +45,7 @@ unsigned int	find_mid(unsigned int max)
 		return (max / 2);
 }
 
-void	sort_6(t_list **a, t_list **b, unsigned int max)
+void	sort_6(t_list **a, t_list **b, t_uint max)
 {
 	int	n;
 

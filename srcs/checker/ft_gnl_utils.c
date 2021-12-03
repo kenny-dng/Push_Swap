@@ -1,35 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_gnl_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chduong <chduong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 15:59:42 by kennyduong        #+#    #+#             */
-/*   Updated: 2021/11/19 15:12:20 by chduong          ###   ########.fr       */
+/*   Created: 2021/06/07 11:11:10 by chduong           #+#    #+#             */
+/*   Updated: 2021/12/02 18:26:39 by chduong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "gnl.h"
 
-int	not_sorted(t_list *a)
+char	*save_join(char *save, char *buff)
 {
-	while (a->next)
-	{
-		if (a->val > (a->next)->val || dist_i(a, a->next) > 1)
-			return (1);
-		a = a->next;
-	}
-	return (0);
-}
+	char	*newsave;
+	int		i;
 
-int	not_revsorted(t_list *a)
-{
-	while (a->next)
-	{
-		if (a->val < (a->next)->val || dist_i(a, a->next) > 1)
-			return (1);
-		a = a->next;
+	i = 0;
+	if (!save && !buff)
+		return (NULL);
+	newsave = malloc(sizeof(char *) * (ft_strlen(save) + ft_strlen(buff) + 1));
+	if (!newsave)
+		return (NULL);
+	while (save && save[i])
+	{	
+		newsave[i] = save[i];
+		++i;
 	}
-	return (0);
+	while (*buff)
+	{
+		newsave[i++] = *buff;
+		++buff;
+	}
+	newsave[i] = 0;
+	if (save)
+		free(save);
+	return (newsave);
 }

@@ -16,10 +16,12 @@ static int	*stack_to_tab(t_list *stack, size_t n)
 {
 	size_t	i;
 	int		*tab;
+	t_list	*top;
 
 	i = 0;
 	tab = malloc(sizeof(int) * n);
-	while (i < n && stack)
+	top = stack;
+	while (i < n)
 	{
 		tab[i] = stack->val;
 		stack = stack->next;
@@ -56,8 +58,10 @@ void	index_stack(t_list *stack, size_t n)
 {
 	int		*tab;
 	size_t	i;
+	t_list	*top;
 
 	tab = stack_to_tab(stack, n);
+	top = stack;
 	sort_tab(tab, n);
 	while (stack)
 	{
@@ -72,18 +76,8 @@ void	index_stack(t_list *stack, size_t n)
 			++i;
 		}
 		stack = stack->next;
+		if (stack == top)
+			stack = NULL;
 	}
 	free(tab);
-}
-
-int	dist_i(t_list *n1, t_list *n2)
-{
-	int	dist;
-
-	if (!n1 || !n2)
-		return (0);
-	dist = n1->i - n2->i;
-	if (dist < 0)
-		dist = dist * -1;
-	return (dist);
 }

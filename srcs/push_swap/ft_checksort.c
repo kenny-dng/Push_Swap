@@ -1,36 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   not_sorted.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chduong <chduong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/09 17:41:14 by chduong           #+#    #+#             */
-/*   Updated: 2021/11/19 18:30:02 by chduong          ###   ########.fr       */
+/*   Created: 2021/11/22 18:21:35 by chduong           #+#    #+#             */
+/*   Updated: 2021/11/25 17:03:02 by chduong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	ft_lstadd_front(t_list **first, t_list *new)
+t_bool	not_sorted(t_list *a)
 {
-	t_list	*last;
+	t_list	*first;
 
-	if (!new || !first)
-		return ;
-	if (!*first)
+	first = a;
+	while (a->next != first)
 	{
-		new->next = new;
-		new->prev = new;
-		*first = new;
+		if (is_following(a) < 0)
+			return (1);
+		a = a->next;
 	}
-	else
+	return (0);
+}
+
+t_bool	not_revsorted(t_list *b)
+{
+	t_list	*first;
+
+	first = b;
+	while (b->next != first)
 	{
-		last = ft_lstlast(*first);
-		last->next = new;
-		new->prev = last;
-		new->next = *first;
-		(*first)->prev = new;
-		*first = new;
+		if (is_following(b) > 0)
+			return (1);
+		b = b->next;
 	}
+	return (0);
 }

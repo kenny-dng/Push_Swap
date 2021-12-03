@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   gnl.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chduong <chduong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/09 17:41:14 by chduong           #+#    #+#             */
-/*   Updated: 2021/11/19 18:30:02 by chduong          ###   ########.fr       */
+/*   Created: 2021/06/07 11:11:46 by chduong           #+#    #+#             */
+/*   Updated: 2021/12/02 18:28:00 by chduong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GNL_H
+# define GNL_H
+# include <stdlib.h>
+# include <sys/types.h>
+# include <sys/uio.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include "../libft/libft.h"
 
-void	ft_lstadd_front(t_list **first, t_list *new)
-{
-	t_list	*last;
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 4
+# endif
 
-	if (!new || !first)
-		return ;
-	if (!*first)
-	{
-		new->next = new;
-		new->prev = new;
-		*first = new;
-	}
-	else
-	{
-		last = ft_lstlast(*first);
-		last->next = new;
-		new->prev = last;
-		new->next = *first;
-		(*first)->prev = new;
-		*first = new;
-	}
-}
+char	*save_join(char *save, char *buff);
+int		get_next_line(int fd, char **line);
+
+#endif

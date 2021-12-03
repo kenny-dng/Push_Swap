@@ -6,7 +6,7 @@
 /*   By: chduong <chduong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 14:00:56 by chduong           #+#    #+#             */
-/*   Updated: 2021/11/18 15:01:21 by chduong          ###   ########.fr       */
+/*   Updated: 2021/12/02 16:34:09 by chduong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <stdlib.h>
 # include <limits.h>
 # include "../libft/libft.h"
-# include <stdio.h>
 
 //	MACRO
 # define P 1
@@ -26,58 +25,66 @@
 # define R 3
 # define RR 4
 
-//	Structures
-
-typedef struct s_sorted
-{
-	t_list	*from;
-	t_list	*to;
-	size_t	len;
-}			t_sorted;
+//	Type Definition
+typedef int				t_bool;
+typedef unsigned int	t_uint;
 
 typedef struct s_move
 {
 	int		what;
 	int		count;
-	t_list	*stack;
 }			t_move;
 
-//	Utils
-int				dist_i(t_list *n1, t_list *n2);
-int				not_sorted(t_list *a);	// non trie croissant
-int				not_revsorted(t_list *a);	// non trie decroissant
-int				count_rot(t_list *stack, unsigned int min, unsigned int max);
-int				count_rrot(t_list *last, unsigned int min, unsigned int max);
+//	Stack Operations
+void		push_a(t_list **a, t_list **b);
+void		push_b(t_list **a, t_list **b);
 
-void			index_stack(t_list *stack, size_t n);
-void			parse_arg(t_list **lst, int ac, char **av);
-void			print_stack(t_list *a, t_list *b);
+void		rotate_a(t_list **a);
+void		rotate_b(t_list **b);
+void		rotate_2(t_list **a, t_list **b);
 
-t_list			*initprev(t_list *lst);
-unsigned int	find_mid(unsigned int max);
+void		rrotate_a(t_list **a);
+void		rrotate_b(t_list **b);
+void		rrotate_2(t_list **a, t_list **b);
 
-//	Stack Moves
-void			push_a(t_list **a, t_list **b);
-void			push_b(t_list **a, t_list **b);
+void		swap_a(t_list **a);
+void		swap_b(t_list **b);
+void		swap_2(t_list **a, t_list **b);
 
-void			rotate_a(t_list **a);
-void			rotate_b(t_list **b);
-void			rotate_2(t_list **a, t_list **b);
+//	Others functions & Utils
+int			dist_i(t_list *n1, t_list *n2);
+int			is_following(t_list *a);
 
-void			rrotate_a(t_list **a);
-void			rrotate_b(t_list **b);
-void			rrotate_2(t_list **a, t_list **b);
+void		index_stack(t_list *stack, size_t n);
+void		parse_arg(t_list **lst, int ac, char **av);
+void		print_stack(t_list *a, t_list *b);
 
-void			swap_a(t_list **a);
-void			swap_b(t_list **b);
-void			swap_2(t_list **a, t_list **b);
+t_uint		i_min(t_list *stack);
+t_uint		i_max(t_list *stack);
 
-//	Sorting Algorithm
-void			sort_2(t_list **a);
-void			sort_3(t_list **a);
-void			rev_sort_2(t_list **a);
-void			rev_sort_3(t_list **a);
-void			sort_6(t_list **a, t_list **b, unsigned int max);
-void			big_sort(t_list **a);
+t_bool		not_sorted(t_list *a);
+t_bool		not_revsorted(t_list *a);
+
+//	Do next Moves
+t_move		make_move(int what, int count);
+void		do_move_a(t_move *ma, t_list **a, t_list **b);
+void		do_move_b(t_move *mb, t_list **a, t_list **b);
+void		double_move(t_move *ma, t_move *mb, t_list **a, t_list **b);
+
+//	Little Algorithms
+void		sort_2(t_list **a);
+void		sort_3(t_list **a);
+void		rev_sort_2(t_list **a);
+void		rev_sort_3(t_list **a);
+void		sort_6(t_list **a, t_list **b, t_uint max);
+
+//	Functions of Main Algorithm
+t_list		*best_push_b(t_list *a, t_list *b);
+t_uint		count_rot_a(t_list *a, t_list *b_topush);
+
+void		make_third(t_list **a, t_list **b, t_uint max);
+void		divide_third(t_list **a, t_list **b);
+void		insertion_sort(t_list **a, t_list **b);
+void		go_top(t_list **a, t_uint max);
 
 #endif

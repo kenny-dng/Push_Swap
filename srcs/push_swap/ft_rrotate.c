@@ -1,36 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   rev_rotate.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chduong <chduong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/09 17:41:14 by chduong           #+#    #+#             */
-/*   Updated: 2021/11/19 18:30:02 by chduong          ###   ########.fr       */
+/*   Created: 2021/10/19 12:09:03 by chduong           #+#    #+#             */
+/*   Updated: 2021/11/19 17:09:19 by chduong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	ft_lstadd_front(t_list **first, t_list *new)
+static void	rrotate(t_list **first)
 {
-	t_list	*last;
-
-	if (!new || !first)
+	if (!first || !*first)
 		return ;
-	if (!*first)
-	{
-		new->next = new;
-		new->prev = new;
-		*first = new;
-	}
-	else
-	{
-		last = ft_lstlast(*first);
-		last->next = new;
-		new->prev = last;
-		new->next = *first;
-		(*first)->prev = new;
-		*first = new;
-	}
+	*first = (*first)->prev;
+}
+
+void	rrotate_a(t_list **a)
+{
+	rrotate(a);
+	ft_putstr_fd("rra\n", 1);
+}
+
+void	rrotate_b(t_list **b)
+{
+	rrotate(b);
+	ft_putstr_fd("rrb\n", 1);
+}
+
+void	rrotate_2(t_list **a, t_list **b)
+{
+	rrotate(a);
+	rrotate(b);
+	ft_putstr_fd("rrr\n", 1);
 }

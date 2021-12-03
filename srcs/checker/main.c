@@ -1,36 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chduong <chduong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/09 17:41:14 by chduong           #+#    #+#             */
-/*   Updated: 2021/11/19 18:30:02 by chduong          ###   ########.fr       */
+/*   Created: 2021/12/02 13:13:16 by chduong           #+#    #+#             */
+/*   Updated: 2021/12/03 13:24:09 by chduong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "checker.h"
 
-void	ft_lstadd_front(t_list **first, t_list *new)
+void	clear_all(t_list **a, t_list **b, char **line)
 {
-	t_list	*last;
+	free(*line);
+	*line = NULL;
+	ft_lstclear(a);
+	ft_lstclear(b);
+}
 
-	if (!new || !first)
-		return ;
-	if (!*first)
-	{
-		new->next = new;
-		new->prev = new;
-		*first = new;
-	}
-	else
-	{
-		last = ft_lstlast(*first);
-		last->next = new;
-		new->prev = last;
-		new->next = *first;
-		(*first)->prev = new;
-		*first = new;
-	}
+int	main(int ac, char **av)
+{
+	t_list	*a;
+	t_list	*b;
+	char	*line;
+
+	a = NULL;
+	b = NULL;
+	line = NULL;
+	if (ac > 1)
+		parse_arg(&a, ac, av);
+	while (get_next_line(0, &line))
+		do_read(&a, &b, &line);
+	check_stack(a, b);
+	clear_all(&a, &b, &line);
+	return (0);
 }
