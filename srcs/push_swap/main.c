@@ -6,7 +6,7 @@
 /*   By: chduong <chduong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 14:40:53 by chduong           #+#    #+#             */
-/*   Updated: 2021/12/02 12:56:56 by chduong          ###   ########.fr       */
+/*   Updated: 2021/12/06 16:42:29 by chduong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	big_sort(t_list **a, t_list **b, t_uint max)
 {
+	if (!not_sorted(*a))
+		return ;
 	make_third(a, b, max);
 	divide_third(a, b);
 	insertion_sort(a, b);

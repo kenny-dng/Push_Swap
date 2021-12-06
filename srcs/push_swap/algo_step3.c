@@ -6,7 +6,7 @@
 /*   By: chduong <chduong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 15:18:02 by chduong           #+#    #+#             */
-/*   Updated: 2021/11/30 18:38:16 by chduong          ###   ########.fr       */
+/*   Updated: 2021/12/06 16:57:35 by chduong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,10 @@ void	insertion_sort(t_list **a, t_list **b)
 	t_list	*bpb;
 	t_move	ma;
 	t_move	mb;
+	size_t	size_b;
 
-	while (ft_lstsize(*b) > 0)
+	size_b = ft_lstsize(*b);
+	while (size_b-- > 0)
 	{
 		bpb = best_push_b(*a, *b);
 		ma = next_ma(*a, bpb);
