@@ -6,7 +6,7 @@
 /*   By: chduong <chduong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 18:21:35 by chduong           #+#    #+#             */
-/*   Updated: 2021/12/03 15:03:53 by chduong          ###   ########.fr       */
+/*   Updated: 2021/12/07 13:37:53 by chduong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static int	is_sorted(t_list *a)
 {
 	t_list	*first;
 
+	if (!a)
+		exit(EXIT_FAILURE);
 	first = a;
 	while (a->next != first)
 	{
